@@ -1,0 +1,100 @@
+{% extends "base/base.html" %}
+
+{% block title %}Contact | Bicycle Store{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <!-- Header -->
+    <div class="text-center mb-5">
+        <h1 class="fw-bold display-5">🚴 Contact Us</h1>
+        <p class="text-muted">We’re here to help you ride better!</p>
+    </div>
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDE - FORM -->
+        <div class="col-lg-7">
+            <div class="card border-0 shadow-lg rounded-4 p-4">
+
+                <h4 class="mb-4 fw-semibold text-dark">Send Message</h4>
+
+                <form method="post">
+                    {% csrf_token %}
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <input type="text" name="name" class="form-control rounded-3" placeholder="Full Name">
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <input type="email" name="email" class="form-control rounded-3" placeholder="Email Address">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="text" name="subject" class="form-control rounded-3" placeholder="Subject">
+                    </div>
+
+                    <div class="mb-3">
+                        <textarea name="message" rows="5" class="form-control rounded-3" placeholder="Your Message"></textarea>
+                    </div>
+
+                    <button class="btn btn-success w-100 rounded-3 py-2 fw-semibold">
+                        🚀 Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- RIGHT SIDE - INFO -->
+        <div class="col-lg-5">
+            <div class="card bg-dark text-white border-0 shadow-lg rounded-4 p-4 h-100">
+
+                <h4 class="fw-semibold mb-3">Get in Touch</h4>
+                <p class="text-light">
+                    Have questions about bicycles, accessories, or orders? Reach out anytime!
+                </p>
+
+                <hr class="border-light">
+
+                <p>📍 <strong>Location</strong><br>
+                Bicycle Hub, Bangalore</p>
+
+                <p>📞 <strong>Phone</strong><br>
+                +91 98765 43210</p>
+
+                <p>✉️ <strong>Email</strong><br>
+                support@bicyclestore.com</p>
+
+                <p>⏰ <strong>Hours</strong><br>
+                Mon - Sat: 9AM - 8PM</p>
+
+                <hr class="border-light">
+
+                <!-- Social -->
+                <div>
+                    <a href="#" class="text-white me-3">🌐 Facebook</a>
+                    <a href="#" class="text-white me-3">📸 Instagram</a>
+                    <a href="#" class="text-white">🐦 Twitter</a>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- MAP -->
+    <div class="mt-5">
+        <div class="rounded-4 overflow-hidden shadow-lg">
+            <iframe 
+                src="https://maps.google.com/maps?q=bangalore&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                width="100%" height="350" style="border:0;">
+            </iframe>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

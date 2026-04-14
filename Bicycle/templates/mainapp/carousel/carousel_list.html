@@ -1,0 +1,31 @@
+{% extends 'base/base.html' %}
+
+{% block title %}
+Carousels
+{% endblock %}
+
+{% block content %}
+
+<!-- Fix for fixed header overlap -->
+<div class="container-fluid pt-5 mt-3">
+
+    <!-- Top Action -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="fw-bold">Carousel Images</h3>
+        <a href="{% url 'add_carousel' %}" class="btn btn-success">
+            + Add Image
+        </a>
+    </div>
+
+    <!-- Cards Grid -->
+    <div class="row g-4">
+        {% for carousel_image in carousel_images %}
+            {% include 'mainapp/includes/carouselCard.html' %}
+        {% empty %}
+            <p class="text-muted text-center">No carousel images added yet.</p>
+        {% endfor %}
+    </div>
+
+</div>
+
+{% endblock %}

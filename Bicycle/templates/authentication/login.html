@@ -1,0 +1,36 @@
+{% extends 'base/base.html' %}
+
+{% block title %}
+Login
+{% endblock %}
+
+
+{% block content %}
+<section>
+    <div class="card">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in form %}
+            {% include 'base/includes/basicFormField.html' %}
+            {% endfor %}
+            <p>
+                {% for error in form.non_field_errors %}
+                <div class="text-danger">
+                    {{error}}
+                </div>
+                {% endfor %}
+            </p>
+            <button type="submit" class="btn btn-primary">Log in</button>
+            <div>
+                <p class="text-center mt-3 mb-0">
+                    Don't have an account ? Sign up
+                    <a href="{% url 'signup' %}">here</a>
+                </p>
+                <p class="text-center">
+                    <a href="{% url 'send_otp' %}">Forgot Password</a>
+                </p>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}

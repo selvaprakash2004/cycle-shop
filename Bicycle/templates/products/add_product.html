@@ -1,0 +1,20 @@
+{% extends 'base/base.html' %}
+
+{% block title %}
+Add Product
+{% endblock %}
+
+
+{% block content %}
+<section>
+    <div class="card">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in form %}
+            {%  %}
+
+            <button type="submit">Save</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,96 @@
+<header class="fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black shadow-lg py-3">
+        <div class="container">
+
+            <!-- Logo -->
+            <a class="navbar-brand fw-bold fs-4" href="{% url 'home_page' %}">
+                🚴 Bicycle
+            </a>
+
+            <!-- Toggle Button -->
+            <button class="navbar-toggler border-0" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Menu -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+
+                <!-- Left Menu -->
+                <ul class="navbar-nav me-auto align-items-lg-center">
+
+                    <li class="nav-item mx-2">
+                        <a class="nav-link active fw-semibold" href="{% url 'home_page' %}">Home</a>
+                    </li>
+
+                    <li class="nav-item mx-2">
+                        <a class="nav-link fw-semibold" href="{% url 'product_list' %}">Products</a>
+                    </li>
+
+                    <!-- Dropdown -->
+                    <li class="nav-item dropdown mx-2">
+                        <a class="nav-link dropdown-toggle fw-semibold" href="#" role="button"
+                            data-bs-toggle="dropdown">
+                            More
+                        </a>
+                        <ul class="dropdown-menu shadow border-0 rounded-3">
+                            <li><a class="dropdown-item" href="{% url 'about_page' %}">About</a></li>
+                            <li><a class="dropdown-item" href="{% url 'contact_page' %}">Contact</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Admin -->
+                    {% if user.is_staff %}
+                    <li class="nav-item dropdown mx-2">
+                        <a class="nav-link dropdown-toggle text-warning fw-semibold" href="#"
+                            data-bs-toggle="dropdown">
+                            Manage
+                        </a>
+                        <ul class="dropdown-menu shadow border-0 rounded-3">
+                            <li><a class="dropdown-item" href="{% url 'carousel_list' %}">Carousel</a></li>
+                        </ul>
+                    </li>
+                    {% endif %}
+                </ul>
+
+                <!-- Search -->
+                <form class="d-flex me-3" action="{% url 'search_view' %}">
+                    <input class="form-control rounded-pill px-3" type="search" placeholder="Search products..." name="q" value="{{query}}">
+                </form>
+
+                <!-- User Section -->
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle fw-semibold" href="#" data-bs-toggle="dropdown">
+                            {% if user.is_authenticated %}
+                                👤 {{ user.username.capitalize }}
+                            {% else %}
+                                Accounts
+                            {% endif %}
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-3">
+
+                            {% if user.is_authenticated %}
+                                <li><a class="dropdown-item" href="{% url 'view_cart' %}">🛒 My Cart</a></li>
+                                 <li><a class = 'dropdown-item' href="{% url 'order_history_2' %}">Past Orders</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <form action="{% url 'logout' %}" method="post">
+                                        {% csrf_token %}
+                                        <button class="dropdown-item text-danger">Logout</button>
+                                    </form>
+                                </li>
+                            {% else %}
+                                <li><a class="dropdown-item" href="{% url 'signin' %}">Login</a></li>
+                                <li><a class="dropdown-item" href="{% url 'signup' %}">Register</a></li>
+                            {% endif %}
+
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+</header>

@@ -1,0 +1,75 @@
+{% extends 'base/base.html' %}
+
+{% block title %}
+{{ product.title }}
+{% endblock %}
+
+{% block content %}
+
+<section id="product-detail-root" class="product-detail container py-5" 
+    data-add-to-cart-url="{% url 'add_to_cart' %}"
+    data-csrf-token="{{csrf_token}}">
+
+    <div class="row g-5 align-items-start">
+
+        <!-- LEFT: IMAGE -->
+        <div class="col-lg-6">
+            {% include 'products/includes/productCarousel.html' %}
+        </div>
+
+        <!-- RIGHT: DETAILS -->
+        <div class="col-lg-6">
+
+            <div class="product-detail__info">
+
+                <!-- Title -->
+                <h2 class="product-detail__title">
+                    {{ product.title }}
+                </h2>
+
+                <!-- Price -->
+                <div class="product-detail__price">
+                    ₹ {{ product.price }}
+                </div>
+
+                <!-- Description -->
+                <p class="product-detail__desc">
+                    {{ product.caption }}
+                </p>
+
+                <!-- Actions -->
+                <div class="product-detail__actions d-flex gap-3 mt-4">
+                     {% csrf_token %}
+                    <button class="btn btn-primary product-detail__cart-btn add-to-cart"
+                        data-product-id='{{product.id}}'>
+                        Add to Cart
+                    </button>
+
+                    <a href="#" class="btn btn-outline-secondary product-detail__wishlist-btn">
+                        Wishlist
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% if user.is_staff %}
+<section>
+    <h2>Add Product Images</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for field in form %}
+        {% include 'base/includes/basicFormField.html' %}
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+</section>
+{% endif %}
+
+{% endblock %}

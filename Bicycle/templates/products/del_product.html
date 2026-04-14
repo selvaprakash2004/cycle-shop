@@ -1,0 +1,61 @@
+{% extends 'base/base.html' %}
+
+{% block title %}
+Delete Product
+{% endblock %}
+
+{% block content %}
+<section class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <div class="card shadow border-0">
+                
+                <!-- Header -->
+                <div class="card-header bg-danger text-white">
+                    <h5 class="mb-0">Delete Confirmation</h5>
+                </div>
+
+                <!-- Body -->
+                <div class="card-body text-center">
+                    
+                    <p class="mb-3 text-muted">
+                        Are you sure you want to delete this product?
+                    </p>
+
+                    <!-- Image Preview -->
+                    <img src="{{ product.thumbnail.url }}" 
+                         class="img-fluid rounded mb-3" 
+                         alt="Product Image">
+
+                    <!-- Title & Caption -->
+                    <h6 class="fw-bold">{{ product.title }}</h6>
+                    <p class="text-muted small">{{ product.caption }}</p>
+
+                </div>
+                
+
+                <!-- Footer -->
+                <div class="card-footer d-flex justify-content-between">
+
+                    <!-- Cancel -->
+                    <a href="{% url 'product_list' %}" class="btn btn-secondary">
+                        Cancel
+                    </a>
+
+                    <!-- Confirm Delete -->
+                    <form method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">
+                            Delete
+                        </button>
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock %}

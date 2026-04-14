@@ -1,0 +1,44 @@
+<div class="product-card card col shadow-sm border-0 position-relative overflow-hidden" >
+
+    <!-- Admin buttons -->
+     {% if user.is_staff %}
+    <a href="{% url 'edit_product' product.pk %}" 
+       class="product-edit-btn position-absolute top-0 start-0 m-2"
+       title="Edit">
+        <i class="bi bi-pencil-square"></i>
+    </a>
+
+    <a href="{% url 'del_product' product.pk %}" 
+       class="product-delete-btn position-absolute top-0 end-0 m-2"
+       title="Delete">
+        <i class="bi bi-trash"></i>
+    </a>
+    {% endif %}
+    <!-- Image -->
+    <div class="product-img ratio ratio-4x3">
+        <img src="{{ product.thumbnail.url }}"
+             alt="{{ product.title }}">
+    </div>
+
+    <div class="card-body d-flex flex-column">
+        <h5 class="product-title card-title">
+            <a href="{% url 'prod_details' product.pk %}" class="text-decoration-none">
+            {{ product.title|title }}
+            </a>
+        </h5>
+
+        <p class="product-caption card-text">
+            {{ product.caption|truncatechars:80 }}
+        </p>
+
+        <p class="product-price">
+            ₹ {{ product.price }}
+        </p>
+
+        <button 
+        class="btn mt-auto add-to-cart product-cart-btn {% if user.is_staff %}disabled btn-secondary{% else %}btn-primary{% endif %}"
+        data-product-id = '{{product.id}}'>
+            Add to Cart
+        </button>
+    </div>
+</div>

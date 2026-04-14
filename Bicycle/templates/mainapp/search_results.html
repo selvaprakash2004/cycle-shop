@@ -1,0 +1,16 @@
+{% extends 'base/base.html' %}
+
+{% block title %}
+{{query.capitalize}}
+{% endblock %}
+
+
+{% block content %}
+<h2>
+    Search Results for {{query.capitalize}}
+</h2>
+<section id="products">
+    {% include 'products/includes/productsSection.html' %}
+</section>
+
+{% endblock %}

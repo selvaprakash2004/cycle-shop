@@ -1,0 +1,35 @@
+<div class="col-12 col-sm-6 col-md-4 col-lg-3">
+
+    <div class="card h-100 shadow-sm border-0">
+
+        <!-- Fixed aspect ratio wrapper -->
+        <div class="ratio ratio-16x9">
+            <img src="{{ carousel_image.image.url }}"
+                 class="card-img-top object-fit-cover"
+                 alt="{{ carousel_image.title }}">
+        </div>
+
+        <div class="card-body d-flex flex-column">
+
+            <h5 class="card-title fw-semibold">
+                {{ carousel_image.title|title }}
+            </h5>
+
+            <p class="card-text text-muted small flex-grow-1">
+                {{ carousel_image.caption|truncatechars:80 }}
+            </p>
+
+            <!-- Buttons -->
+            <div class="d-flex gap-2 mt-auto">
+                <a href="{% url 'edit_carousel' carousel_image.pk %}" class="btn btn-outline-primary w-100">
+                    Update
+                </a>
+                <a href="{% url 'del_carousel' carousel_image.pk %}" class="btn btn-outline-danger w-100">
+                    Delete
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+</div>
